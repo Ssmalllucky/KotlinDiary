@@ -3,12 +3,12 @@ package com.kotlindiary.main
 
 /*********************** Kotlin基本语法 ****************************/
 fun main() {
-    println("Hello")
+    println("Hello World")
 //    vars(1,2,3,4,5)
 //    lambdaTest()
 //    testnull()
 //    stringModel()
-    println(intervalFunctionDownTo())
+    println(testString())
 }
 
 //函数定义
@@ -110,3 +110,76 @@ fun intervalFunctionDownTo(){
         println(i)
     }
 }
+
+/**
+ * Kotlin基本数据类型
+ *
+ * Double   8 byte
+ * Float    4 byte
+ * Long     8 byte
+ * Int      4 byte
+ * Short    2 byte
+ * Byte     1 byte(8 bit)
+ */
+
+//Kotlin不支持8进制数据
+fun baseDataTypes(){
+    val numInt = 100_000_000  //使用下划线使数字常量更容易阅读
+    val numFloat = 100_0000F
+    val numLong = 100_000L
+
+    println(numInt)
+
+    //Kotlin 中比较两个数字
+    //在 Kotlin 中，三个等号 === 表示比较对象地址，两个 == 表示比较两个值大小。
+    //经过装箱（将基本数据类型变成了包装器类型），创建了两个不同的对象
+    val numIntA : Int? = numInt
+    val numIntB : Int? = numInt
+
+    println("===: " + (numIntA === numIntB))
+
+    println("==: " + (numIntA == numIntB))
+}
+
+fun typeCovert(){
+    //由于不同的表示方式，较小类型并不是较大类型的子类型，较小的类型不能隐式转换为较大的类型。
+    // 这意味着在不进行显式转换的情况下我们不能把 Byte 型值赋给一个 Int 变量。
+    val b: Byte = 1
+//    val i: Int = b  //错误
+    val i: Int = b.toInt()  //正确
+}
+
+fun bitOperator(){
+
+}
+
+//字符：和 Java 不一样，Kotlin 中的 Char 不能直接和数字操作，
+// Char 必需是单引号 ' 包含起来的。比如普通字符 '0'，'a'。
+//比如 var c : Char c = 1，会报错
+
+//数组用类 Array 实现，并且还有一个 size 属性及 get 和 set 方法，
+// 由于使用 [] 重载了 get 和 set 方法，所以我们可以通过下标很方便
+// 的获取或者设置数组对应位置的值。 数组的创建两种方式：一种是使用函
+// 数arrayOf()；另外一种是使用工厂函数。如下所示，我们分别是两种方
+// 式创建了两个数组：
+fun testArray(){
+    val a = arrayOf(1, 2, 3)
+    val b = Array(3, { i -> (i * 2) })
+    println(b[2])
+}
+
+//字符串
+fun testString(){
+
+    //多行字符串写法,在后面加.trim()会把不在字符串内容之间的空格全部去掉，
+    //.trimMargin()会把不在字符串所在行的空格全部去掉，
+    //.trimIndent()会把字符串之间的空格全部去掉，仅保留字符内容中的换行
+    val text = """
+        Hello,
+        world
+    """.trimIndent()
+    println(text)
+
+}
+
+
