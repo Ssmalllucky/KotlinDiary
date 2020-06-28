@@ -2,14 +2,6 @@ package com.kotlindiary.main
 
 
 /*********************** Kotlin基本语法 ****************************/
-fun main() {
-    println("Hello World")
-//    vars(1,2,3,4,5)
-//    lambdaTest()
-//    testnull()
-//    stringModel()
-    println(testString())
-}
 
 //函数定义
 fun sum(a: Int, b: Int): Int {
@@ -175,6 +167,7 @@ fun testString(){
     //.trimMargin()会把不在字符串所在行的空格全部去掉，
     //.trimIndent()会把字符串之间的空格全部去掉，仅保留字符内容中的换行
     val text = """
+        
         Hello,
         world
     """.trimIndent()
@@ -182,4 +175,92 @@ fun testString(){
 
 }
 
+
+/*********************** Kotlin条件控制 ***********************/
+fun conditionControl(a:Int,b:Int){
+//    val max = if (a > b) a else b
+//    println(max)
+    //函数体写法
+    val maxFunction  = if (a > b){
+        println(a)
+        a
+    } else {
+        println(b)
+        b
+    }
+}
+
+//使用in运算符来检测某个数字是否在指定区间内，区间格式是x..y
+fun testInterval(){
+    val x = 8
+    if(x in 1..9){
+        println("True")
+    } else {
+        println("False")
+    }
+}
+
+//When表达式
+//When表达式类似于其他语言中的switch语句，不同的是，Kotlin中的when表达式可以用函数体来表示
+fun testWhen(x:Int){
+    //最简单的使用方式
+    when (x){
+        1 -> println("x == 1")
+        2 -> println("x == 2")
+        else -> println("x is not valid")
+    }
+
+    //如果有很多分支需要相同的处理，可以把分支条件放在一起，用逗号隔开
+    when (x) {
+        0,1 -> println(" x 有效")
+        else -> println(" x 无效")
+    }
+
+    //也可以检测一个值在或者不在一个区间或者集合中
+    when (x) {
+        in 1..10 -> println("x 在区间中")
+        !in 11..20 -> println("x 不在区间中")
+        else -> println("x 是无效数字")
+    }
+
+    //还可以通过when表达式来检测一个值是（is）或者不是(!is)一个特定类型的值
+//    when (x) {
+//        is String -> true
+//        else -> false
+//    }
+
+}
+
+/*********************** Kotlin循环控制 ***********************/
+//kotlin中的for循环可以对任何提供迭代器的对象进行遍历，语法如下：
+// for (item in collection) println(item)
+
+//P.S：这种“在区间上遍历”会编译成优化的实现而不会创建额外的对象
+//使用库函数withIndex
+
+fun testWithIndex(){
+    val array = Array(5,{i -> i+1}) //初始化数组
+    for ((index,value) in array.withIndex()){
+        println("index is ${index},value is ${value}")
+    }
+}
+
+fun testTagReturn(){
+    val ints = arrayOf(1,2,3,4,5)
+    ints.forEach {
+        if (it == 3) return@forEach
+        println(it)
+    }
+}
+
+//为了方便debug，将main方法写在最下面
+fun main() {
+    println("Hello World")
+//    vars(1,2,3,4,5)
+//    lambdaTest()
+//    testnull()
+//    stringModel()
+//    println(conditionControl(3,1))
+    testTagReturn()
+}
 
