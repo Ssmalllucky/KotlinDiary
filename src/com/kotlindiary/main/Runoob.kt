@@ -51,4 +51,6 @@ class Runoob(val firstName : String){
     var heint : Float = 140.4F
         private set //如果private设置为set，则不能通过实例化的形式赋值
 
+
+
 }
