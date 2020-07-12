@@ -338,5 +338,32 @@ fun main() {
 //        Person.BlackCat->Not A Person
 //    }
 
+    //调用泛型函数
+//    val number = 1
+//    val typename = "Tony"
+//    val bool = true
+//
+//    doPrintln(number)
+//    doPrintln(typename)
+//    doPrintln(bool)
 
+    //通过对象表达式可以越过类的定义直接得到一个对象
+    val site = object {
+        var name : String = "Tony"
+        var age : Int = 18
+    }
+
+    println("名字是：${site.name} 年龄是: ${site.age}")
 }
+
+//Kotlin泛型
+//调用泛型函数
+fun <T> doPrintln(content: T) {
+    when (content) {
+        is Int -> println("content的内容是: $content")
+        is String -> println("content是转为大写：${content.toUpperCase()}")
+        else -> println("content既不是数字，也不是字符串")
+    }
+}
+
+
